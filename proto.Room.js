@@ -92,6 +92,11 @@ Room.prototype.defense = function() {
         for (var tower of towers) {
             // attack the first enemy creep we found
             tower.attack(hostiles[0]);
+            if (hostiles.heal) {
+                tower.attack(hostiles[1]);
+            }
+            // if my creeps are injured 
+            tower.heal(creep, powerCreep);
         }
     }
 };
