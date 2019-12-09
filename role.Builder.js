@@ -369,6 +369,21 @@ module.exports = {
                         creep.memory.target = target.id;
                         creep.memory.mode = 'repair';
                     }
+                    if (target == null) {
+                        // if there are structures that need repair
+                    var construc = creep.room.find(FIND_STRUCTUERS, {
+                        filter: (structure) => {
+                            return (structure.structureType == STRUCTURE_CONTAINER ||
+                                    structure.structureType == STRUCTURE_STORAGE)
+                                    && structure.hits < structure.hitMax;
+                        }
+                    }).sort(function(a, b) { return a.hits - b.hits; });
+                    if (construc.length > 0) {
+                        target = construc[0];
+                        creep.memory.target = target.id;
+                        creep.memory.mode = 'repair';
+                    }
+                    }
                 }
             }
 
