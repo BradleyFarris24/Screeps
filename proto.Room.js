@@ -69,10 +69,10 @@ Room.prototype.getSpawnPlan = function() {
     var spawnPlan = Room.SpawnPlan["generic"][effectiveRcl];
 
     // if all creeps die and there is 300 energy in the room spawn harvesters
-    if (Game.creep in room <= 0 && this.energy <= 300) {
+    if (Game.creep in Room <= 0 && this.energy <= 300) {
         spawnPlan = spawnPlan.concat(Room.SpawnPlan["harvester"][effectiveRcl]);
     }
-    if (Game.creep in room <= 1 && this.energy <= 300) {
+    if (Game.creep in Room <= 1 && this.energy <= 300) {
         spawnPlan = spawnPlan.concat(Room.SpawnPlan["harvester"][effectiveRcl]);   
     }
 
