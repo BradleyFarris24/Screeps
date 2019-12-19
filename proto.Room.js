@@ -80,7 +80,7 @@ Room.prototype.getSpawnPlan = function() {
             return roleHarvester.create(spawn, creepName, source);
         }
     }
-   
+   return false;
 
     // if we have any construction sites, include a builder
     if (this.find(FIND_MY_CONSTRUCTION_SITES).length > 0) {
