@@ -68,15 +68,15 @@ Room.prototype.getSpawnPlan = function() {
     // start with the generic spawn plan
     var spawnPlan = Room.SpawnPlan["generic"][effectiveRcl];
 
-    // if all creeps die, spawn harvesters
-    if (this.find(FIND_MY_SPAWNS)[0]) {
-        spawnPlan = spawnPlan.concat(Room.SpawnPlan["harvester"][effectiveRcl]);
-    }
-    
     // if we have any construction sites, include a builder
     if (this.find(FIND_MY_CONSTRUCTION_SITES).length > 0) {
         // concat() joins two arrays together
         spawnPlan = spawnPlan.concat(Room.SpawnPlan["builder"][effectiveRcl]);
+    }
+
+    // if all creeps die, spawn harvesters
+    if (this.find(FIND_MY_SPAWNS)[0]) {
+        spawnPlan = spawnPlan.concat(Room.SpawnPlan["harvester"][effectiveRcl]);
     }
 
     // return the array with our master plan for this room
