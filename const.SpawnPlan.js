@@ -119,8 +119,8 @@ module.exports = {
             },
             {
                 role: "harvester",
-                midname: "1",
-                size: null,
+                midname: "2",
+                size: "xsmall",
                 args: null,
                 },
             },
