@@ -112,22 +112,21 @@ module.exports = {
         ],
         4: [
             {
-                role: "charger",
+                role: "harvester",
                 midname: "1",
-                size: "medium",
+                size: "xsmall",
                 args: null,
             },
             {
-                role: "miner",
+                role: "harvester",
                 midname: "1",
                 size: null,
-                args: {
-                    "sim": {x: 34, y: 20}
+                args: null,
                 },
             },
             {
                 role: "miner",
-                midname: "2",
+                midname: "1",
                 size: null,
                 args: {
                     "sim": {x: 42, y: 43}
