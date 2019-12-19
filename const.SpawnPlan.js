@@ -122,11 +122,10 @@ module.exports = {
                 midname: "2",
                 size: "xsmall",
                 args: null,
-                },
             },
             {
                 role: "miner",
-                midname: "1",
+                midname: "2",
                 size: null,
                 args: {
                     "sim": {x: 42, y: 43}
