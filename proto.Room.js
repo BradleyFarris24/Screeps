@@ -69,19 +69,10 @@ Room.prototype.getSpawnPlan = function() {
     var spawnPlan = Room.SpawnPlan["generic"][effectiveRcl];
 
     // if all creeps die, spawn harvesters
-    var spawn = this.find(FIND_MY_SPAWNS)[0];
-    var sourcesInRoom = this.find(FIND_SOURCES);
-
-    var numHarvesters = 2;
-    for (var i = 0; i < numHarvesters; i++) {
-        var creepName = "Harvester" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return roleHarvester.create(spawn, creepName, source);
-        }
+    if (this.find(FIND_MY_SPAWNS)[0]) {
+        spawnPlan = spawnPlan.concat(Room.SpawnPlan["harvester"][effectiveRcl]);
     }
-   return false;
-
+    
     // if we have any construction sites, include a builder
     if (this.find(FIND_MY_CONSTRUCTION_SITES).length > 0) {
         // concat() joins two arrays together
