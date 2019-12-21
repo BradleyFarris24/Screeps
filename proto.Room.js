@@ -72,7 +72,7 @@ Room.prototype.getSpawnPlan = function() {
     // if we have any construction sites, include a builder
     if (this.find(FIND_MY_CONSTRUCTION_SITES).length > 0) {
         // concat() joins two arrays together
-        spawnPlan = spawnPlan.concat(Room.SpawnPlan["builder"] * 3 [effectiveRcl]);
+        spawnPlan = spawnPlan.concat(Room.SpawnPlan["builder"][effectiveRcl]);
     }
 
     // if all creeps die, spawn harvesters
