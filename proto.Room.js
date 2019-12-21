@@ -10,6 +10,7 @@ Room.prototype.doSpawn = function() {
             return !spawn.spawning;
         }
     });
+    console.log(spawns);
     // if no spawns are available, exit
     if (!spawns) return;
 
