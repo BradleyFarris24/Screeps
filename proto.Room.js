@@ -76,10 +76,7 @@ Room.prototype.getSpawnPlan = function() {
     }
 
     // if all creeps die, spawn harvesters
-    if (this.find(FIND_MY_SPAWNS)[0]) {
-        spawnPlan = spawnPlan.concat(Room.SpawnPlan["harvester"][effectiveRcl]);
-    }
-    console.log(effectiveRcl);
+    
     // return the array with our master plan for this room
     return spawnPlan;
 };
