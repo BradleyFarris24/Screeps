@@ -35,14 +35,3 @@ module.exports.loop = function () {
 
 }
 
-// Challenge:
-// This week's challenges are all about setting up your development environment so that
-// you're prepared to work like a real developer. 
-// - You will install and setup an IDE, which is where you'll write your code from now on. 
-// - You'll create a github account and learn the basics of version control.
-// - You'll get this Week 4 code up and running in screeps. This will be your codebase for
-//   all future development, so you'll want to understand it well. This is the last chunk
-//   of code I'm giving you. Everything from here forward is your own creation.
-// - If you haven't already, start playing Screeps in the real world!
-//
-// Instructions for this week are here: https://clockmaker.ai/learn-code/week4
