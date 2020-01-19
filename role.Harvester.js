@@ -85,6 +85,13 @@ module.exports = {
             creep.memory.target = null;
         }
 
+         // load up our saved target
+         var target = null;
+         if (creep.memory.target != null) {
+             target = Game.getObjectById(creep.memory.target);
+         }
+
+
         if(creep.memory.mode == 'pickup') {
             // fill up with energy
             
@@ -149,12 +156,6 @@ module.exports = {
 
         } else {
             // deliver the energy
-
-            // load up our saved target
-            var target = null;
-            if (creep.memory.target != null) {
-                target = Game.getObjectById(creep.memory.target);
-            }
 
             if (target == null) {
                 // if we don't have a target, find one
@@ -235,6 +236,30 @@ module.exports = {
             }
         }
 
-    }
+           // ACTION FIRST
+           target = this.action(creep, target);
 
+           // TARGET ACQUISITION SECOND
+           target = this.target(creep, target);
+   
+           // MOVEMENT THIRD
+           this.movement(creep, target);
+   
+
+    },
+
+    action: function(creep, target) {
+
+        return target;
+    },
+
+    target: function(creep, target) {
+        // find targets
+
+        return target;
+    },
+
+    movement: function(creep, target) {
+
+    },
 };
