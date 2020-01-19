@@ -76,26 +76,6 @@ Room.prototype.getSpawnPlan = function() {
     }
 
     // if all creeps die, spawn harvesters
-    var spawn = this.find(FIND_MY_SPAWNS)[0];
-    var sourcesInRoom = this.find(FIND_SOURCES);
-
-    var numHarvesters = 4;
-    for (var i = 0; i < numHarvesters; i++) {
-        var creepName = "Harvester" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return roleHarvester.create(spawn, creepName, source);
-        }
-    }
-
-    var numBuilders = 2;
-    for (var i = 0; i < numBuilders; i++) {
-        var creepName = "Builder" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return roleBuilder.create(spawn, creepName, source);
-        }
-    }
 
     return false;
 
