@@ -419,7 +419,7 @@ module.exports = {
         2: [
             {
                 role: "miner",
-                midname: "2",
+                midname: "1",
                 size: null,
                 args: {
                     "sim": {x: 13, y: 13}
@@ -439,7 +439,7 @@ module.exports = {
         4: [
             {
                 role: "miner",
-                midname: "2",
+                midname: "1",
                 size: null,
                 args: {
                     "sim": {x: 13, y: 13}
@@ -459,7 +459,7 @@ module.exports = {
         6: [
             {
                 role: "miner",
-                midname: "2",
+                midname: "1",
                 size: null,
                 args: {
                     "sim": {x: 13, y: 13}
@@ -479,7 +479,7 @@ module.exports = {
         8: [
             {
                 role: "miner",
-                midname: "2",
+                midname: "1",
                 size: null,
                 args: {
                     "sim": {x: 13, y: 13}
