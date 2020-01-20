@@ -403,5 +403,28 @@ module.exports = {
                 args: null,
             },
         ],
+    },
+    "miner": {
+        0: null,
+        1: [
+            {
+                role: "miner",
+                midname: "1",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },
+            },
+        ],
+        2: [
+            {
+                role: "miner",
+                midname: "2",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },  
+            },
+        ],
     }
 };
