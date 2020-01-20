@@ -426,5 +426,65 @@ module.exports = {
                 },  
             },
         ],
+        3: [
+            {
+                role: "miner",
+                midname: "1",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },
+            },
+        ],
+        4: [
+            {
+                role: "miner",
+                midname: "2",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },  
+            },
+        ],
+        5: [
+            {
+                role: "miner",
+                midname: "1",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },
+            },
+        ],
+        6: [
+            {
+                role: "miner",
+                midname: "2",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },  
+            },
+        ],
+        7: [
+            {
+                role: "miner",
+                midname: "1",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },
+            },
+        ],
+        8: [
+            {
+                role: "miner",
+                midname: "2",
+                size: null,
+                args: {
+                    "sim": {x: 13, y: 13}
+                },  
+            },
+        ],
     }
 };
