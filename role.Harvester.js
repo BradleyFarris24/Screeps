@@ -91,7 +91,19 @@ module.exports = {
              target = Game.getObjectById(creep.memory.target);
          }
 
+           // ACTION FIRST
+           target = this.action(creep, target);
 
+           // TARGET ACQUISITION SECOND
+           target = this.target(creep, target);
+   
+           // MOVEMENT THIRD
+           this.movement(creep, target);
+   
+
+    },
+
+    action: function(creep, target) {
         if(creep.memory.mode == 'pickup') {
             // fill up with energy
             
@@ -111,155 +123,135 @@ module.exports = {
                         creep.say(result);
                         break;
                 }
-                
-            } else {
-                // if creep can't pull from storage, mine energy from a source
-
-                var source = null;
-                if (creep.memory.source != null) {
-                    // gives this creep the ability to mine a specific source, if defined 
-                    // in memory
-                    source = Game.getObjectById(creep.memory.source);
-                }
-                if (source == null) {
-                    // default to mining the first source
-                    var sources = creep.room.find(FIND_SOURCES);
-                    if (sources) {
-                        source = sources[0];
-                    }
-                }
-        
-                if (source) {
-        
-                    // move to the target
-                    creep.moveTo(source);
-        
-                    // mine energy
-                    var result = creep.harvest(source);
-                    switch(result) {
-                        case ERR_NO_BODYPART:
-                            // we've been damaged, kill ourself
-                            creep.suicide();
-                            break;
-                        case ERR_NOT_ENOUGH_RESOURCES:
-                        case ERR_NOT_IN_RANGE:
-                        case OK:
-                            break;
-                        default:
-                            creep.say(result);
-                            break;
-                    }
-        
-                }
-            
-            }
-
-        } else {
-            // deliver the energy
-
-            if (target == null) {
-                // if we don't have a target, find one
-                target = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||
-                                structure.structureType == STRUCTURE_SPAWN ||
-                                structure.structureType == STRUCTURE_TOWER) && 
-                                structure.energy < structure.energyCapacity;
-                    }
-                });
-
-                // remember the structure we are filling up
-                if (target != null) {
-                    creep.memory.target = target.id;
-                }
-            }
-
-            // transfer energy to target or move to it
-            if (target != null) {
-
-                // move to the target
-                creep.moveTo(target);
-
-                // attempt to pass over the energy
-                var result = creep.transfer(target, RESOURCE_ENERGY);
-                switch(result) {
-                    case ERR_NOT_IN_RANGE:
-                        break;
-                    case ERR_NOT_ENOUGH_RESOURCES:
-                        // if we have no energy to transfer, switch modes
-                        creep.memory.mode = 'pickup';
-                        creep.memory.target = null;
-                        break;
-                    case ERR_INVALID_TARGET:
-                    case ERR_FULL:
-                        // if the target was filled up or destroyed, find a new target 
-                        // next tick
-                        creep.memory.target = null;
-                        break;
-                    case OK:
-                        // after energy was transferred, we want to find a new target next
-                        // tick
-                        creep.memory.target = null;
-                        break;
-                    default:
-                        creep.say(result);
-                        break;
-                }
-
-            } else {
-                // when their are no structures that need filling, upgrade the controller
-
-                // transfer to controller or move to it
-                var controller = creep.room.controller;
-
-                // move to the target
-                if (!creep.pos.inRangeTo(controller, 3)) {
-                    creep.moveTo(controller);
-                }
-
-                var result = creep.upgradeController(controller);
-                switch(result) {
-                    case ERR_NOT_IN_RANGE:
-                        break;
-                    case ERR_NOT_ENOUGH_RESOURCES:
-                        creep.memory.mode = 'pickup';
-                        break;
-                    case OK:
-                        break;
-                    default:
-                        creep.say(result);
-                        break;
-                }
-
-                return;
-
+        return target;
             }
         }
-
-           // ACTION FIRST
-           target = this.action(creep, target);
-
-           // TARGET ACQUISITION SECOND
-           target = this.target(creep, target);
-   
-           // MOVEMENT THIRD
-           this.movement(creep, target);
-   
-
-    },
-
-    action: function(creep, target) {
-
-        return target;
     },
 
     target: function(creep, target) {
         // find targets
+ // if creep can't pull from storage, mine energy from a source
 
+ var source = null;
+ if (creep.memory.source != null) {
+     // gives this creep the ability to mine a specific source, if defined 
+     // in memory
+     source = Game.getObjectById(creep.memory.source);
+ }
+ if (source == null) {
+     // default to mining the first source
+     var sources = creep.room.find(FIND_SOURCES);
+     if (sources) {
+         source = sources[0];
+     }
+ }
+
+ if (source) {
+
+     // move to the target
+     creep.moveTo(source);
+
+     // mine energy
+     var result = creep.harvest(source);
+     switch(result) {
+         case ERR_NO_BODYPART:
+             // we've been damaged, kill ourself
+             creep.suicide();
+             break;
+         case ERR_NOT_ENOUGH_RESOURCES:
+         case ERR_NOT_IN_RANGE:
+         case OK:
+             break;
+         default:
+             creep.say(result);
+             break;
+     }
         return target;
+ }
+
+    
     },
 
     movement: function(creep, target) {
+// deliver the energy
+
+if (target == null) {
+    // if we don't have a target, find one
+    target = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
+        filter: (structure) => {
+            return (structure.structureType == STRUCTURE_EXTENSION ||
+                    structure.structureType == STRUCTURE_SPAWN ||
+                    structure.structureType == STRUCTURE_TOWER) && 
+                    structure.energy < structure.energyCapacity;
+        }
+    });
+
+    // remember the structure we are filling up
+    if (target != null) {
+        creep.memory.target = target.id;
+    }
+}
+
+// transfer energy to target or move to it
+if (target != null) {
+
+    // move to the target
+    creep.moveTo(target);
+
+    // attempt to pass over the energy
+    var result = creep.transfer(target, RESOURCE_ENERGY);
+    switch(result) {
+        case ERR_NOT_IN_RANGE:
+            break;
+        case ERR_NOT_ENOUGH_RESOURCES:
+            // if we have no energy to transfer, switch modes
+            creep.memory.mode = 'pickup';
+            creep.memory.target = null;
+            break;
+        case ERR_INVALID_TARGET:
+        case ERR_FULL:
+            // if the target was filled up or destroyed, find a new target 
+            // next tick
+            creep.memory.target = null;
+            break;
+        case OK:
+            // after energy was transferred, we want to find a new target next
+            // tick
+            creep.memory.target = null;
+            break;
+        default:
+            creep.say(result);
+            break;
+    }
+
+} else {
+    // when their are no structures that need filling, upgrade the controller
+
+    // transfer to controller or move to it
+    var controller = creep.room.controller;
+
+    // move to the target
+    if (!creep.pos.inRangeTo(controller, 3)) {
+        creep.moveTo(controller);
+    }
+
+    var result = creep.upgradeController(controller);
+    switch(result) {
+        case ERR_NOT_IN_RANGE:
+            break;
+        case ERR_NOT_ENOUGH_RESOURCES:
+            creep.memory.mode = 'pickup';
+            break;
+        case OK:
+            break;
+        default:
+            creep.say(result);
+            break;
+    }
+
+    return;
+
+    }
 
     },
 };
