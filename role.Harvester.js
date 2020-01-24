@@ -224,7 +224,6 @@ if (target != null) {
             break;
     }
 
-} else {
     // when their are no structures that need filling, upgrade the controller
 
     // transfer to controller or move to it
