@@ -13,7 +13,7 @@ Room.prototype.doSpawn = function() {
     console.log(spawns);
     // if no spawns are available, exit
     if (!spawns) return;
-
+/*
     // get the object that specifies our spawn plan for this room
     var spawnPlan = this.getSpawnPlan();
     if (!spawnPlan) return;
@@ -40,7 +40,7 @@ Room.prototype.doSpawn = function() {
             }
         }
     }
-
+*/
     var spawn = this.find(FIND_MY_SPAWNS)[0];
     var sourcesInRoom = this.find(FIND_SOURCES);
 
