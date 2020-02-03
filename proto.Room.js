@@ -13,7 +13,7 @@ Room.prototype.doSpawn = function() {
     console.log(spawns);
     // if no spawns are available, exit
     if (!spawns) return;
-/*
+
     // get the object that specifies our spawn plan for this room
     var spawnPlan = this.getSpawnPlan();
     if (!spawnPlan) return;
@@ -40,67 +40,6 @@ Room.prototype.doSpawn = function() {
             }
         }
     }
-*/
-    var spawn = this.find(FIND_MY_SPAWNS)[0];
-    var sourcesInRoom = this.find(FIND_SOURCES);
-
-    var numHarvesters = 4;
-    for (var i = 0; i < numHarvesters; i++) {
-        var creepName = "Harvester" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return role.Harvester.create(spawn, creepName, size, args);
-        }
-    }
-
-    var numBuilders = 1;
-    for (var i = 0; i < numBuilders; i++) {
-        var creepName = "Builder" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return role.Builder.create(spawn, creepName, size, args);
-        }
-    }
-
-    var numMiners = 1;
-    for (var i = 0; i < numMiners; i++) {
-        var creepName = "Miner" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return role.Miner.create(spawn, creepName, size, args);
-        }
-    }
-
-    var numMule = 0;
-    for (var i = 0; i < numMule; i++) {
-        var creepName = "Mule" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return role.Mule.create(spawn, creepName, size, args);
-        }
-    }
-
-    var numCharger = 0;
-    for (var i = 0; i < numCharger; i++) {
-        var creepName = "Charger" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return role.Charger.create(spawn, creepName, size, args);
-        }
-    }
-
-    var numWorshiper = 0;
-    for (var i = 0; i < numWorshioer; i++) {
-        var creepName = "Worshiper" + i;
-        if (Game.creeps[creepName] == undefined) {
-            var source = sourcesInRoom[i % 2];
-            return role.Worshiper.create(spawn, creepName, size, args);
-        }
-    }
-
-    return false;
-
-};
 
 // returns a list of creep plans depending on the room's RCL and energyCapacityAvailable
 Room.prototype.getSpawnPlan = function() {
