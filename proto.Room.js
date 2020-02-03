@@ -40,6 +40,7 @@ Room.prototype.doSpawn = function() {
             }
         }
     }
+};
 
 // returns a list of creep plans depending on the room's RCL and energyCapacityAvailable
 Room.prototype.getSpawnPlan = function() {
