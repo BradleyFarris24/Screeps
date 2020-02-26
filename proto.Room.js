@@ -82,6 +82,7 @@ Room.prototype.getSpawnPlan = function() {
 
     // return the array with our master plan for this room
     return spawnPlan;
+    console.log(spawnPlan);
 };
 
 // controls the tower behavior
