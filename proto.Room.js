@@ -74,7 +74,6 @@ Room.prototype.getSpawnPlan = function() {
         spawnPlan = spawnPlan.concat(Room.SpawnPlan["builder"][effectiveRcl]);
     }
 
-
     // if all creeps die, spawn harvesters
 
     return false;
