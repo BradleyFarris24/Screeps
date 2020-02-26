@@ -74,7 +74,6 @@ Room.prototype.getSpawnPlan = function() {
         spawnPlan = spawnPlan.concat(Room.SpawnPlan["builder"][effectiveRcl]);
     }
 
-    var spawnPlan = Room.SpawnPlan["miner"][effectiveRcl];
 
     // if all creeps die, spawn harvesters
 
@@ -82,7 +81,7 @@ Room.prototype.getSpawnPlan = function() {
 
     // return the array with our master plan for this room
     return spawnPlan;
-    console.log(spawnPlan);
+    
 };
 
 // controls the tower behavior
